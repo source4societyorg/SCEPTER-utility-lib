@@ -14,6 +14,16 @@ const utilities = {
     } else {
       onErrorCallback(err)
     }
+  },
+  validateApiResult: (result) => {
+    if(typeof result === 'string') {
+        result = JSON.parse(result);
+    } 
+
+    if (utilities.isEmpty(result) || utilities.isEmpty(result.status) || result.status === false) {
+      throw new Error(result.errors.message);
+    }
+    return result
   }
 }
 
