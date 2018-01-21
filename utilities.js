@@ -1,5 +1,6 @@
 const utilities = {
   isEmpty: (value) => (typeof value === 'undefined' || value === null || value === '' || (typeof value === 'object' &&  Object.getOwnPropertyNames(value).length < 1) || value === 'NaN' || value.length === 0 ),
+  isNotEmpty: (value) => !isEmpty(value),
   standardErrorHandler: (callback, service) => (err) => {
     let response = service.prepareErrorResponse(err)
     callback(null, response)
