@@ -40,7 +40,24 @@ const utilities = {
 		return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 	},
   valueOrDefault: (value, defaultValue) => value || defaultValue,
-  ifTrueElseDefault: (statement, value, defaultValue) => statement ? utilities.valueOrDefault(value, defaultValue) : defaultValue
+  ifTrueElseDefault: (statement, value, defaultValue) => statement ? utilities.valueOrDefault(value, defaultValue) : defaultValue,
+  getInOrDefault: (targetObject, subProperties, defaultValue) => {
+    let value = undefined
+    if (utilities.isEmpty(targetObject)) {
+      return defaultValue
+    }
+    
+    value = targetObject
+    for( let index = 0; index < subProperties.length; index++ ) {
+      if (utilities.isEmpty(value[subProperties[index]])) {
+        return defaultValue
+      } else {
+        value = value[subProperties[index]]
+      }
+    }
+    
+    return valueOrDefault(value, defaultValue)
+  }
 }
 
 module.exports = utilities
