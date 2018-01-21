@@ -25,7 +25,7 @@ const utilities = {
     } 
 
     if (utilities.isEmpty(result) || utilities.isEmpty(result.status) || result.status === false) {
-      throw new Error(utilities.getInOrDefault([result, 'errors', 'message'], utilities.getInOrDefault([result, 'errors'], utilities.getInOrDefault([result,'errorMessage'], result)));
+      throw new Error(utilities.getInOrDefault([result, 'errors', 'message'], utilities.getInOrDefault([result, 'errors'], utilities.getInOrDefault([result,'errorMessage'], result))));
     }
     return result
   },
