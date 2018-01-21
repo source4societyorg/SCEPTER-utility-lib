@@ -6,14 +6,13 @@ const utilities = {
   ifTrueElseDefault: (statement, value, defaultValue) => statement ? utilities.valueOrDefault(value, defaultValue) : defaultValue,
   standardErrorHandler: (callback, service) => (err) => { let response = service.prepareErrorResponse(err); callback(null, response) },
   standardSuccessHandler: (callback, service) => (responseData) => { let response = service.prepareSuccessResponse(responseData); callback(null, response) },
-  makeSequenceCallback: (generator, finalCallback) => (err, data) => utilities.isNotEmpty(err) ? finalCallback(err) : generator.next(data),
-  initiateSequence: (sequenceGenerator, callback) => { 
-    let sequence = sequenceGenerator(callback)
+  makeSequenceCallback: (generator, finalCallback) => (err, data) => utilities.isNotEmpty(err) ? finalCallback(utilities.valueOrDefault(err.message,err)) : generator.next(data),
+  initiateSequence: (sequence, callback) => { 
     let sequenceCallback = utilities.makeSequenceCallback(sequence, callback)
     sequence.next()
     sequence.next(sequenceCallback) 
   },
-  standardCallbackHandler: (err, data, onErrorCallback, onSuccessCallback) => {
+  standardCallbackHandler: (err, data, onErrorCallback, onSuccessCallback) => {   
     if (utilities.isEmpty(err)) {
       onSuccessCallback(data)
     } else {
