@@ -52,7 +52,7 @@ const utilities = {
       }
     }
     
-    return valueOrDefault(value, defaultValue)
+    return utilities.valueOrDefault(value, defaultValue)
   }
 }
 
