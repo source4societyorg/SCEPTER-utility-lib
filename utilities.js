@@ -38,7 +38,9 @@ const utilities = {
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-	}
+	},
+  valueOrDefault: (value, defaultValue) => value || defaultValue,
+  ifTrueElseDefault: (statement, value, defaultValue) => statement ? utilities.valueOrDefault(value, defaultValue) : defaultValue
 }
 
 module.exports = utilities
