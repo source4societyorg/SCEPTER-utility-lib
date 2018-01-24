@@ -53,7 +53,8 @@ const utilities = {
     }
     
     return utilities.valueOrDefault(value, defaultValue)
-  }
+  },
+  ucFirst: (string) => ( string.charAt(0).toUpperCase() + string.slice(1) )
 }
 
 module.exports = utilities
