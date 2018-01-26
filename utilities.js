@@ -6,6 +6,9 @@ const utilities = {
   ifTrueElseDefault: (statement, value, defaultValue) => statement ? utilities.valueOrDefault(value, defaultValue) : defaultValue,
   standardErrorHandler: (callback, service) => (err) => { let response = service.prepareErrorResponse(err); callback(null, response) },
   standardSuccessHandler: (callback, service) => (responseData) => { let response = service.prepareSuccessResponse(responseData); callback(null, response) },
+  notEmptyAt: (targetObject, subProperties) => (utilities.isNotEmpty(utilities.getInOrDefault(targetObject, subProperties))),
+  emptyAt: (targetObject, subProperties) => !notEmptyAt(targetObject, subProperties),
+  ucFirst: (string) => ( string.charAt(0).toUpperCase() + string.slice(1) ),
   makeSequenceCallback: (generator, finalCallback) => (err, data) => utilities.isNotEmpty(err) ? finalCallback(utilities.valueOrDefault(err.message,err)) : generator.next(data),
   initiateSequence: (sequence, callback) => { 
     let sequenceCallback = utilities.makeSequenceCallback(sequence, callback)
@@ -24,8 +27,9 @@ const utilities = {
         result = JSON.parse(result);
     } 
 
-    if (utilities.isEmpty(result) || utilities.isEmpty(result.status) || result.status === false) {
-      throw new Error(utilities.getInOrDefault(result, ['errors', 'message'], utilities.getInOrDefault(result, ['errors'], utilities.getInOrDefault(result,['errorMessage'], result))));
+    if (utilities.emptyAt(result, ['status']) || result.status === false) {
+      const error = utilities.getInOrDefault(result, ['errors', 'message'], utilities.getInOrDefault(result,['errorMessage'], utilities.getInOrDefault(result, ['message'], utilities.getInOrDefault(result, ['errors'], result ))))
+      throw new Error(error);
     }
     return result
   },
@@ -50,11 +54,9 @@ const utilities = {
       } else {
         value = value[subProperties[index]]
       }
-    }
-    
+    }    
     return utilities.valueOrDefault(value, defaultValue)
-  },
-  ucFirst: (string) => ( string.charAt(0).toUpperCase() + string.slice(1) )
+  }
 }
 
 module.exports = utilities
