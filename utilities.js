@@ -7,7 +7,7 @@ const utilities = {
   standardErrorHandler: (callback, service) => (err) => { let response = service.prepareErrorResponse(err); callback(null, response) },
   standardSuccessHandler: (callback, service) => (responseData) => { let response = service.prepareSuccessResponse(responseData); callback(null, response) },
   notEmptyAt: (targetObject, subProperties) => (utilities.isNotEmpty(utilities.getInOrDefault(targetObject, subProperties))),
-  emptyAt: (targetObject, subProperties) => !notEmptyAt(targetObject, subProperties),
+  emptyAt: (targetObject, subProperties) => !utilities.notEmptyAt(targetObject, subProperties),
   ucFirst: (string) => ( string.charAt(0).toUpperCase() + string.slice(1) ),
   makeSequenceCallback: (generator, finalCallback) => (err, data) => utilities.isNotEmpty(err) ? finalCallback(utilities.valueOrDefault(err.message,err)) : generator.next(data),
   initiateSequence: (sequence, callback) => { 
