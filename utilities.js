@@ -66,6 +66,13 @@ const utilities = {
       }
     }
     return utilities.valueOrDefault(value, defaultValue)
+  },
+  immutableToJS: (immutableObject) => {
+    let mutableObject
+    if (utilities.isNotEmpty(immutableObject)) {
+      mutableObject = immutableObject.toJS()
+    }
+    return mutableObject
   }
 }
 
