@@ -2,7 +2,7 @@ const utilities = {
   isEmpty: (value) => (typeof value === 'undefined' || value === null || value === '' || (typeof value === 'object' && Object.getOwnPropertyNames(value).length < 1) || value === 'NaN' || value.length === 0),
   isNotEmpty: (value) => !utilities.isEmpty(value),
   getRandomInt: (min, max) => { min = Math.ceil(min); max = Math.floor(max); return Math.floor(Math.random() * (max - min)) + min },
-  valueOrDefault: (value, defaultValue) => value || defaultValue,
+  valueOrDefault: (value, defaultValue) => utilities.isNotEmpty(value) ? value : defaultValue,
   ifTrueElseDefault: (statement, value, defaultValue) => statement ? utilities.valueOrDefault(value, defaultValue) : defaultValue,
   notEmptyAt: (targetObject, subProperties) => (utilities.isNotEmpty(utilities.getInOrDefault(targetObject, subProperties))),
   emptyAt: (targetObject, subProperties) => !utilities.notEmptyAt(targetObject, subProperties),
