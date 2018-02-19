@@ -19,7 +19,7 @@ or
 
 Then in your code, you can reference the individual utility functions. For example, to export the `isEmpty` function:
 
-    const isEmpty = require('@source4society/scepter-validation-lib').isEmpty
+    const isEmpty = require('@source4society/scepter-utility-lib').isEmpty
 
 ## Functions
 
