@@ -5,7 +5,7 @@ const isEmptyFunction = (value) => (
   value === '' ||
   (typeof value === 'object' && Object.getOwnPropertyNames(value).length < 1) ||
   Number.isNaN(value) ||
-  value.length === 0
+  (value.length === 0 && typeof value !== 'function')
 )
 const isNotEmptyFunction = (value) => !isEmptyFunction(value)
 const getRandomIntFunction = (min, max, injectedMath) => {

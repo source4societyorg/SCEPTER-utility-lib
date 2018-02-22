@@ -1,4 +1,4 @@
-test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false. isNotEmpty is the opposite', () => {
+test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false or function. isNotEmpty is the opposite', () => {
   const mockEmptyString = ''
   const mockEmptyObject = {}
   const mockEmptyArray = []
@@ -10,6 +10,7 @@ test('isEmpty is true when the value is empty string, empty object, empty array,
   const mockArray = ['mockArray']
   const mockZero = 0
   const mockNumber = 1
+  const mockFunction = () => ({})
   const isEmpty = require('../index').isEmpty
   const isNotEmpty = require('../index').isNotEmpty
   expect(isEmpty(mockEmptyString)).toBeTruthy()
@@ -25,6 +26,7 @@ test('isEmpty is true when the value is empty string, empty object, empty array,
   expect(isEmpty(mockArray)).toBeFalsy()
   expect(isEmpty(mockNumber)).toBeFalsy()
   expect(isEmpty(mockZero)).toBeFalsy()
+  expect(isEmpty(mockFunction)).toBeFalsy()
   expect(isNotEmpty(mockEmptyString)).toBeFalsy()
   expect(isNotEmpty(mockEmptyObject)).toBeFalsy()
   expect(isNotEmpty(mockEmptyArray)).toBeFalsy()
@@ -38,6 +40,7 @@ test('isEmpty is true when the value is empty string, empty object, empty array,
   expect(isNotEmpty(mockArray)).toBeTruthy()
   expect(isNotEmpty(mockNumber)).toBeTruthy()
   expect(isNotEmpty(mockZero)).toBeTruthy()
+  expect(isNotEmpty(mockFunction)).toBeTruthy()
 })
 
 test('getRandomInt selects a random integer, floors the result, and scales it to be within min inclusive, max exclusive', () => {
