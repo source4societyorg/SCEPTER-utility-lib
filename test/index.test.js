@@ -208,3 +208,12 @@ test('standardCallbackHandler calls the success callback if err is empty', (done
   const standardCallbackHandler = require('../index').standardCallbackHandler
   standardCallbackHandler(mockNullErr, mockData, mockErrorCallback, mockSuccessCallback)
 })
+
+test('findOneFunction ', () => {
+  const mockHaystack = [ 'TEST1', 'TEST2', 'TEST3' ]
+  const mockArray = ['TEST2']
+  const mockMissArray = ['TEST4']
+  const findOne = require('../index').findOne
+  expect(findOne(mockHaystack, mockArray)).toBeTruthy()
+  expect(findOne(mockHaystack, mockMissArray)).toBeFalsy()
+})

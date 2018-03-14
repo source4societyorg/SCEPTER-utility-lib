@@ -70,6 +70,8 @@ const standardCallbackHandlerFunction = (err, data, onErrorCallback, onSuccessCa
   }
 }
 
+const findOneFunction = (haystack, array) => array.some((v) => haystack.indexOf(v) >= 0)
+
 module.exports.isEmpty = isEmptyFunction
 module.exports.isNotEmpty = isNotEmptyFunction
 module.exports.getRandomInt = getRandomIntFunction
@@ -83,3 +85,4 @@ module.exports.keyGenerator = keyGeneratorFunction
 module.exports.getInOrDefault = getInOrDefaultFunction
 module.exports.immutableToJS = immutableToJSFunction
 module.exports.standardCallbackHandler = standardCallbackHandlerFunction
+module.exports.findOne = findOneFunction
