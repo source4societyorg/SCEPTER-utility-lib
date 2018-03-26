@@ -73,3 +73,4 @@ export const standardCallbackHandler = (err, data, onErrorCallback, onSuccessCal
 };
 
 export const findOne = (haystack, array) => array.some((v) => haystack.indexOf(v) >= 0);
+export const jsonParseOrDefault = (value, defaultValue) => isNotEmpty(value) ? JSON.parse(value) : defaultValue;

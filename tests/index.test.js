@@ -13,6 +13,7 @@ import {
   getInOrDefault,
   standardCallbackHandler,
   findOne,
+  jsonParseOrDefault,
 } from '../src/index';
 
 test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false or function. isNotEmpty is the opposite', () => {
@@ -214,4 +215,13 @@ test('findOneFunction ', () => {
   const mockMissArray = ['TEST4'];
   expect(findOne(mockHaystack, mockArray)).toBeTruthy();
   expect(findOne(mockHaystack, mockMissArray)).toBeFalsy();
+});
+
+test('jsonParseOrDefault will return the JSON.Parse of a value if it is not empty, otherwise it returns the default value provided', () => {
+  const mockJsonObject = { hasProperties: 'mockJsonObject' };
+  const mockJsonString = JSON.stringify(mockJsonObject);
+  const mockEmptyString = null;
+  const mockDefault = 'mockDefault';
+  expect(jsonParseOrDefault(mockJsonString, mockDefault)).toEqual(mockJsonObject);
+  expect(jsonParseOrDefault(mockEmptyString, mockDefault)).toEqual(mockDefault);
 });
