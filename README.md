@@ -17,9 +17,9 @@ Add this library to your project via `npm` or `yarn` with the command:
 or
     yarn add @source4society/scepter-utility-lib
 
-Then in your code, you can reference the individual utility functions. For example, to export the `isEmpty` function:
+Then in your code, you can import the individual utility functions. For example, to import the `isEmpty` function:
 
-    const isEmpty = require('@source4society/scepter-utility-lib').isEmpty
+    import { isEmpty } from '@source4society/scepter-utility-lib';
 
 ## Functions
 
