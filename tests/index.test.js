@@ -14,6 +14,12 @@ import {
   standardCallbackHandler,
   findOne,
   jsonParseOrDefault,
+  ssValueOrDefault,
+  ssIfTrueElseDefault,
+  eitherOf,
+  ssEitherOf,
+  conjunctionOf,
+  ssConjunctionOf,
 } from '../src/index';
 
 test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false or function. isNotEmpty is the opposite', () => {
@@ -93,12 +99,28 @@ test('valueOrDefault will return the variables value if it exists, or else retur
   expect(valueOrDefault(mockValue, mockDefaultValue)).toEqual(mockValue);
 });
 
+test('ssValueOrDefault will return the variables value if it exists, or else return the default, but both must be functions', () => {
+  const mockEmptyValue = '';
+  const mockDefaultValue = () => 'mockdefaultvalue';
+  const mockValue = () => 'mockValue';
+  expect(ssValueOrDefault(mockEmptyValue, mockDefaultValue)).toEqual(mockDefaultValue());
+  expect(ssValueOrDefault(mockValue, mockDefaultValue)).toEqual(mockValue);
+});
+
 test('ifTrueElseDefault returns the second parameter if the first is true, and the third if not', () => {
   const mockValue = 'mockValue';
   const mockDefaultValue = 'mockDefaultValue';
   expect(ifTrueElseDefault(false, mockValue, mockDefaultValue)).toEqual(mockDefaultValue);
   expect(ifTrueElseDefault(true, mockValue, mockDefaultValue)).toEqual(mockValue);
 });
+
+test('ssIfTrueElseDefault returns the second parameter if the first is true, and the third if not, but the second and third must be a function', () => {
+  const mockValue = () => 'mockValue';
+  const mockDefaultValue = () => 'mockDefaultValue';
+  expect(ssIfTrueElseDefault(false, mockValue, mockDefaultValue)).toEqual(mockDefaultValue());
+  expect(ssIfTrueElseDefault(true, mockValue, mockDefaultValue)).toEqual(mockValue());
+});
+
 
 test('notEmptyAt will return true if object is not empty at the nexted property point, false if it is. emptyAt will do the opposite', () => {
   const mockObject = {
@@ -224,4 +246,48 @@ test('jsonParseOrDefault will return the JSON.Parse of a value if it is not empt
   const mockDefault = 'mockDefault';
   expect(jsonParseOrDefault(mockJsonString, mockDefault)).toEqual(mockJsonObject);
   expect(jsonParseOrDefault(mockEmptyString, mockDefault)).toEqual(mockDefault);
+});
+
+test('eitherOf will return true if one or the other value is true, otherwise it will return false', () => {
+  const trueValue1 = true;
+  const trueValue2 = true;
+  const falseValue1 = false;
+  const falseValue2 = false;
+  expect(eitherOf(trueValue1, trueValue2)).toBeTruthy();
+  expect(eitherOf(trueValue1, falseValue2)).toBeTruthy();
+  expect(eitherOf(falseValue1, trueValue2)).toBeTruthy();
+  expect(eitherOf(falseValue1, falseValue2)).toBeFalsy();
+});
+
+test('ssEitherOf will return true if one or the other value is true, otherwise it will return false, but second argument must be function', () => {
+  const trueValue1 = true;
+  const trueValue2 = () => true;
+  const falseValue1 = false;
+  const falseValue2 = () => false;
+  expect(ssEitherOf(trueValue1, trueValue2)).toBeTruthy();
+  expect(ssEitherOf(trueValue1, falseValue2)).toBeTruthy();
+  expect(ssEitherOf(falseValue1, trueValue2)).toBeTruthy();
+  expect(ssEitherOf(falseValue1, falseValue2)).toBeFalsy();
+});
+
+test('conjunctionOf will return true if both values are true, otherwise will return false', () => {
+  const trueValue1 = true;
+  const trueValue2 = true;
+  const falseValue1 = false;
+  const falseValue2 = false;
+  expect(conjunctionOf(trueValue1, trueValue2)).toBeTruthy();
+  expect(conjunctionOf(trueValue1, falseValue2)).toBeFalsy();
+  expect(conjunctionOf(falseValue1, falseValue2)).toBeFalsy();
+  expect(conjunctionOf(falseValue1, trueValue2)).toBeFalsy();
+});
+
+test('ssConjunctionOf will return true if both values are true, otherwise will return false but the second value must be a function', () => {
+  const trueValue1 = true;
+  const trueValue2 = () => true;
+  const falseValue1 = false;
+  const falseValue2 = () => false;
+  expect(ssConjunctionOf(trueValue1, trueValue2)).toBeTruthy();
+  expect(ssConjunctionOf(trueValue1, falseValue2)).toBeFalsy();
+  expect(ssConjunctionOf(falseValue1, falseValue2)).toBeFalsy();
+  expect(ssConjunctionOf(falseValue1, trueValue2)).toBeFalsy();
 });

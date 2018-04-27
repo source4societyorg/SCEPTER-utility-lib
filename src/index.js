@@ -7,6 +7,7 @@ export const isEmpty = (value) => (
   Number.isNaN(value) ||
   (value.length === 0 && typeof value !== 'function')
 );
+
 export const isNotEmpty = (value) => !isEmpty(value);
 export const getRandomInt = (injectedMin, injectedMax, injectedMath) => {
   const Mathematics = valueOrDefault(injectedMath, Math);
@@ -15,7 +16,9 @@ export const getRandomInt = (injectedMin, injectedMax, injectedMath) => {
   min = Mathematics.ceil(min); max = Mathematics.floor(max); return Mathematics.floor(Mathematics.random() * (max - min)) + min;
 };
 export const valueOrDefault = (value, defaultValue) => isNotEmpty(value) ? value : defaultValue;
+export const ssValueOrDefault = (value, defaultValue) => isNotEmpty(value) ? value : defaultValue();
 export const ifTrueElseDefault = (statement, value, defaultValue) => statement ? valueOrDefault(value, defaultValue) : defaultValue;
+export const ssIfTrueElseDefault = (statement, value, defaultValue) => statement ? ssValueOrDefault(value(), defaultValue()) : defaultValue();
 export const notEmptyAt = (targetObject, subProperties) => (isNotEmpty(getInOrDefault(targetObject, subProperties)));
 export const emptyAt = (targetObject, subProperties) => !notEmptyAt(targetObject, subProperties);
 export const ucFirst = (string) => (string.charAt(0).toUpperCase() + string.slice(1));
@@ -74,3 +77,7 @@ export const standardCallbackHandler = (err, data, onErrorCallback, onSuccessCal
 
 export const findOne = (haystack, array) => array.some((v) => haystack.indexOf(v) >= 0);
 export const jsonParseOrDefault = (value, defaultValue) => isNotEmpty(value) ? JSON.parse(value) : defaultValue;
+export const eitherOf = (value1, value2) => value1 || value2;
+export const ssEitherOf = (value1, value2) => value1 || value2();
+export const conjunctionOf = (value1, value2) => value1 && value2;
+export const ssConjunctionOf = (value1, value2) => value1 && value2();

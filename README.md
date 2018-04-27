@@ -35,9 +35,17 @@ Specify a `min` (inclusive) and `max` (exclusive) to get back a random number ba
 
 If the value is empty, return default, otherwise return the value. Very useful for avoiding ternary's for better line coverage when setting default values
 
+### ssValueOrDefault
+
+Same as above, but the second argument is a function or lambda to be executed if the first argument is empty. SS stands for "short-circuit".
+
 ### ifTrueElseDefault
 
 If the first argument evaluates to true, return the second argument, otherwise return the third. Very useful for avoiding branching logic but beware - you cannot short circuit the arguments like you can with a normal ternary
+
+### ssIfTrueElseDefault
+
+Like above but value1 and value2 should be defined as functions or lambdas to provide short circuiting.
 
 ### emptyAt / notEmptyAt
 
@@ -66,3 +74,19 @@ Convert an immutable object to its JS form if the object is not empty, otherwise
 ### standardCallback
 
 Use this to split the results of a standard callback into two separate function calls. The first argument is the error object, the second is the success (data) object. If the error object is not empty, then the error callback is called with the error data, otherwise the success callback is called with the success data
+
+## either
+
+Use this function to disjoin (||) two values
+
+## and
+
+Use this function to conjoin (&&) two values
+
+## ssEither
+
+Use this function to disjoin (||) two values, but the second argument should be a function that will be executed if the first is not true or undefined
+
+## ss
+
+Use this function to conjoin (&&) two values, but the second argument should be a function that will be executed if the first is not true or undefined
