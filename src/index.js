@@ -81,3 +81,4 @@ export const eitherOf = (value1, value2) => value1 || value2;
 export const ssEitherOf = (value1, value2) => value1 || value2();
 export const conjunctionOf = (value1, value2) => value1 && value2;
 export const ssConjunctionOf = (value1, value2) => value1 && value2();
+export const trueIfEqual = (value1, value2) => value1 === value2;

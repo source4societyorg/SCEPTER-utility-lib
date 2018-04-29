@@ -20,6 +20,7 @@ import {
   ssEitherOf,
   conjunctionOf,
   ssConjunctionOf,
+  trueIfEqual,
 } from '../src/index';
 
 test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false or function. isNotEmpty is the opposite', () => {
@@ -290,4 +291,12 @@ test('ssConjunctionOf will return true if both values are true, otherwise will r
   expect(ssConjunctionOf(trueValue1, falseValue2)).toBeFalsy();
   expect(ssConjunctionOf(falseValue1, falseValue2)).toBeFalsy();
   expect(ssConjunctionOf(falseValue1, trueValue2)).toBeFalsy();
+});
+
+test('trueIfEqual will return true if value1 === value2 or else false', () => {
+  const mockValue1 = 1;
+  const mockValue2 = 1;
+  const mockValue3 = 2;
+  expect(trueIfEqual(mockValue1, mockValue2)).toBeTruthy();
+  expect(trueIfEqual(mockValue1, mockValue3)).toBeFalsy();
 });

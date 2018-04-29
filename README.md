@@ -75,18 +75,22 @@ Convert an immutable object to its JS form if the object is not empty, otherwise
 
 Use this to split the results of a standard callback into two separate function calls. The first argument is the error object, the second is the success (data) object. If the error object is not empty, then the error callback is called with the error data, otherwise the success callback is called with the success data
 
-## either
+## eitherOf
 
 Use this function to disjoin (||) two values
 
-## and
+## conjunctionOf
 
 Use this function to conjoin (&&) two values
 
-## ssEither
+## ssEitherOf
 
 Use this function to disjoin (||) two values, but the second argument should be a function that will be executed if the first is not true or undefined
 
-## ss
+## ssConjunctionOf
 
 Use this function to conjoin (&&) two values, but the second argument should be a function that will be executed if the first is not true or undefined
+
+## trueIfEqual
+
+Function will return the result of value1 === value2
