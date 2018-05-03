@@ -1,12 +1,11 @@
 
-export const isEmpty = (value) => (
-  typeof value === 'undefined' ||
-  value === null ||
-  value === '' ||
-  (typeof value === 'object' && Object.getOwnPropertyNames(value).length < 1) ||
-  Number.isNaN(value) ||
-  (value.length === 0 && typeof value !== 'function')
-);
+export const isEmpty = (value) =>
+    typeof value === 'undefined' ||
+    value === null ||
+    value === '' ||
+    (typeof value === 'object' && Object.getOwnPropertyNames(value).length < 1 && value.constructor.name === 'Object') ||
+    Number.isNaN(value) ||
+    (value.length === 0 && typeof value !== 'function');
 
 export const isNotEmpty = (value) => !isEmpty(value);
 export const getRandomInt = (injectedMin, injectedMax, injectedMath) => {

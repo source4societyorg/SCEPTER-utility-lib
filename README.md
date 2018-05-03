@@ -25,7 +25,7 @@ Then in your code, you can import the individual utility functions. For example,
 
 ### isEmpty / isNotEmpty
 
-use this to determine if a given variable is "empty". "Emptiness" is defined as an undefined value, null, NaN, {}, [], or ''. A value such as boolean `false` is not counted as empty. `isNotEmpty` is simply the `not` of `isEmpty`
+use this to determine if a given variable is "empty". "Emptiness" is defined as an undefined value, null, NaN, {}, [], or ''. A value such as boolean `false` is not counted as empty, nor is a `function` or a `class` (instantiated or definition). `isNotEmpty` is simply the `not` of `isEmpty`
 
 ### getRandomInt
 

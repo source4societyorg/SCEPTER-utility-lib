@@ -23,7 +23,7 @@ import {
   trueIfEqual,
 } from '../src/index';
 
-test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false or function. isNotEmpty is the opposite', () => {
+test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false, function or instantiated class. isNotEmpty is the opposite', () => {
   const mockEmptyString = '';
   const mockEmptyObject = {};
   const mockEmptyArray = [];
@@ -32,6 +32,8 @@ test('isEmpty is true when the value is empty string, empty object, empty array,
   const mockUndefined = undefined;
   const mockString = 'mockString';
   const mockObject = { hasProperties: 'mockObject' };
+  const MockClass = class MockClassObject { constructor() { return 'mockClass'; } };
+  const MockClassInsantiated = new MockClass();
   const mockArray = ['mockArray'];
   const mockZero = 0;
   const mockNumber = 1;
@@ -46,6 +48,8 @@ test('isEmpty is true when the value is empty string, empty object, empty array,
   expect(isEmpty(true)).toBeFalsy();
   expect(isEmpty(mockString)).toBeFalsy();
   expect(isEmpty(mockObject)).toBeFalsy();
+  expect(isEmpty(MockClass)).toBeFalsy();
+  expect(isEmpty(MockClassInsantiated)).toBeFalsy();
   expect(isEmpty(mockArray)).toBeFalsy();
   expect(isEmpty(mockNumber)).toBeFalsy();
   expect(isEmpty(mockZero)).toBeFalsy();
@@ -60,6 +64,8 @@ test('isEmpty is true when the value is empty string, empty object, empty array,
   expect(isNotEmpty(true)).toBeTruthy();
   expect(isNotEmpty(mockString)).toBeTruthy();
   expect(isNotEmpty(mockObject)).toBeTruthy();
+  expect(isNotEmpty(MockClass)).toBeTruthy();
+  expect(isNotEmpty(MockClassInsantiated)).toBeTruthy();
   expect(isNotEmpty(mockArray)).toBeTruthy();
   expect(isNotEmpty(mockNumber)).toBeTruthy();
   expect(isNotEmpty(mockZero)).toBeTruthy();
