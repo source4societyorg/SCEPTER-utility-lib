@@ -17,7 +17,7 @@ export const getRandomInt = (injectedMin, injectedMax, injectedMath) => {
 export const valueOrDefault = (value, defaultValue) => isNotEmpty(value) ? value : defaultValue;
 export const ssValueOrDefault = (value, defaultValue) => isNotEmpty(value) ? value : defaultValue();
 export const ifTrueElseDefault = (statement, value, defaultValue) => statement ? valueOrDefault(value, defaultValue) : defaultValue;
-export const ssIfTrueElseDefault = (statement, value, defaultValue) => statement ? ssValueOrDefault(value(), defaultValue()) : defaultValue();
+export const ssIfTrueElseDefault = (statement, value, defaultValue) => statement ? ssValueOrDefault(value(), defaultValue) : defaultValue();
 export const notEmptyAt = (targetObject, subProperties) => (isNotEmpty(getInOrDefault(targetObject, subProperties)));
 export const emptyAt = (targetObject, subProperties) => !notEmptyAt(targetObject, subProperties);
 export const ucFirst = (string) => (string.charAt(0).toUpperCase() + string.slice(1));

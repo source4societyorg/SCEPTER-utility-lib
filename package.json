@@ -1,6 +1,6 @@
 {
   "name": "@source4society/scepter-utility-lib",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Useful functions commonly used within application development",
   "main": "lib/index.js",
   "repository": "https://github.com/source4societyorg/yourrepository.git",
