@@ -94,3 +94,7 @@ Use this function to conjoin (&&) two values, but the second argument should be 
 ## trueIfEqual
 
 Function will return the result of value1 === value2
+
+## nullOp
+
+Lambda that returns null value, useful if you want to return null in a short circuited function or if you want to render a null React component

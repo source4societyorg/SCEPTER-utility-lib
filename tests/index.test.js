@@ -21,6 +21,7 @@ import {
   conjunctionOf,
   ssConjunctionOf,
   trueIfEqual,
+  nullOp,
 } from '../src/index';
 
 test('isEmpty is true when the value is empty string, empty object, empty array, undefined, null or NaN but not when false, function or instantiated class. isNotEmpty is the opposite', () => {
@@ -305,4 +306,8 @@ test('trueIfEqual will return true if value1 === value2 or else false', () => {
   const mockValue3 = 2;
   expect(trueIfEqual(mockValue1, mockValue2)).toBeTruthy();
   expect(trueIfEqual(mockValue1, mockValue3)).toBeFalsy();
+});
+
+test('nullOp returns null', () => {
+  expect(nullOp()).toBeNull();
 });
