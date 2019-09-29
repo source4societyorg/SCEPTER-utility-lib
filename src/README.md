@@ -1,1 +1,1 @@
-Add your src files here, and if you use more than one make sure to add a babel step in the scripts section of your package.json. This does not end up in the final npm package
+Add your src files here. This does not end up in the final npm package. These sources will be compiled and added to the lib file when publishing to npm

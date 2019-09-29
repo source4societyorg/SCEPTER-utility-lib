@@ -17,9 +17,13 @@ Add this library to your project via `npm` or `yarn` with the command:
 or
     yarn add @source4society/scepter-utility-lib
 
-Then in your code, you can import the individual utility functions. For example, to import the `isEmpty` function:
+Then in your code, you can import the utility class:
 
-    import { isEmpty } from '@source4society/scepter-utility-lib';
+    import SCEPTERUtils from '@source4society/scepter-utility-lib';
+
+or for commonJS
+
+    const SCEPTERUtils = require('@source4society/scepter-utility-lib')
 
 ## Functions
 
@@ -97,4 +101,4 @@ Function will return the result of value1 === value2
 
 ## nullOp
 
-Lambda that returns null value, useful if you want to return null in a short circuited function or if you want to render a null React component
+Returns null value, useful if you want to return null in a short circuited function or if you want to render a null React component

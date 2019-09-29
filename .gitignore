@@ -1,6 +1,10 @@
 # Build
 lib/*.js
 
+#IDE
+
+SCEPTER-utility-lib.code-workspace
+
 # Logs
 logs
 *.log

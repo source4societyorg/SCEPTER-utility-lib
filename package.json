@@ -1,16 +1,16 @@
 {
   "name": "@source4society/scepter-utility-lib",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "description": "Useful functions commonly used within application development",
   "main": "lib/index.js",
-  "repository": "https://github.com/source4societyorg/yourrepository.git",
+  "repository": "https://github.com/source4societyorg/SCEPTER-utility-lib.git",
   "author": "Source 4 Society",
   "license": "AGPL-3.0",
   "private": false,
   "scripts": {
     "test": "eslint ./src/*.js ./tests/*.js && jest --coverage",
-    "build": "babel src/index.js --minified --out-file lib/index.js",
-    "prepublish": "npm run build"
+    "build": "uglifyjs ./src/*.js -o ./lib/index.js",
+    "prepublish": "yarn test & npm run build"
   },
   "jest": {
     "coverageReporters": [
@@ -18,9 +18,6 @@
       "html",
       "cobertura"
     ],
-    "transform": {
-      "^.+\\.js$": "babel-jest"
-    },
     "coverageDirectory": "./coverage",
     "collectCoverage": true,
     "collectCoverageFrom": [
@@ -37,36 +34,18 @@
     "moduleDirectories": [
       "node_modules"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/test-bundler.js",
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-core": "6.24.1",
-    "babel-eslint": "7.2.3",
-    "babel-jest": "^22.4.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-dynamic-import-node": "1.0.2",
-    "babel-plugin-react-intl": "2.3.1",
-    "babel-plugin-react-transform": "2.0.2",
-    "babel-plugin-styled-components": "1.1.4",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "babel-plugin-transform-react-constant-elements": "6.23.0",
-    "babel-plugin-transform-react-inline-elements": "6.22.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.5",
-    "babel-preset-env": "1.5.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "6.24.1",
-    "babel-preset-stage-0": "6.24.1",
-    "enzyme": "2.8.2",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb": "15.0.1",
-    "eslint-config-airbnb-base": "11.2.0",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-jest": "^21.5.0",
-    "eslint-plugin-jsx-a11y": "5.0.3",
-    "eslint-plugin-react": "^7.6.1",
-    "immutable": "^3.8.2",
-    "jest-cli": "21.0.0"
+    "eslint": "^6.4.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "immutable": "^4.0.0-rc.12",
+    "jest-cli": "^24.9.0",
+    "uglify-es": "^3.3.9"
   }
 }
